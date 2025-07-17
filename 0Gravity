@@ -1,0 +1,240 @@
+-- Gui to Lua
+-- Version: 3.2
+ 
+-- Instances:
+ 
+local LolFlingGui = Instance.new("ScreenGui")
+local Main = Instance.new("ImageLabel")
+local Creds = Instance.new("TextLabel")
+local MainButton = Instance.new("ImageButton")
+local Label = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
+local UICorner1 = Instance.new("UICorner")
+local TitleLabel = Instance.new("TextLabel")
+local Opener = Instance.new("ImageButton")
+local UICorner_2 = Instance.new("UICorner")
+local UIStroke = Instance.new("UIStroke")
+ 
+-- Properties:
+ 
+LolFlingGui.Name = "LolFlingGui"
+LolFlingGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+LolFlingGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ 
+Main.Name = "Main"
+Main.Parent = LolFlingGui
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.300358087, 0, 0.569642842, 0)
+Main.Size = UDim2.new(0.339724004, 0, 0.33214283, 0)
+Main.Image = "rbxassetid://631727248"
+Main.Visible = false -- Start hidden
+ 
+Creds.Name = "Creds"
+Creds.Parent = Main
+Creds.AnchorPoint = Vector2.new(0.5, 0.5)
+Creds.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Creds.BackgroundTransparency = 1.000
+Creds.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Creds.BorderSizePixel = 2
+Creds.Position = UDim2.new(0.5, 0, 0.922715127, 0)
+Creds.Size = UDim2.new(0.852232397, 0, 0.15053764, 0)
+Creds.Font = Enum.Font.IndieFlower
+Creds.Text = "YOUTUBE: ZenithLikesLigma"
+Creds.TextColor3 = Color3.fromRGB(255, 206, 11)
+Creds.TextScaled = true
+Creds.TextSize = 14.000
+Creds.TextWrapped = true
+ 
+local stroke_Creds = Instance.new("UIStroke")
+stroke_Creds.Thickness = 2
+stroke_Creds.Color = Color3.fromRGB(0, 0, 0)
+stroke_Creds.Parent = Creds
+ 
+MainButton.Name = "MainButton"
+MainButton.Parent = Main
+MainButton.AnchorPoint = Vector2.new(0.5, 0.5)
+MainButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+MainButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainButton.BorderSizePixel = 0
+MainButton.Position = UDim2.new(0.5, 0, 0.666666687, 0)
+MainButton.Size = UDim2.new(0.510218084, 0, 0.279569924, 0)
+MainButton.Image = "rbxassetid://631727248"
+MainButton.ImageColor3 = Color3.fromRGB(34, 255, 0)
+ 
+local stroke_MainButton = Instance.new("UIStroke")
+stroke_MainButton.Thickness = 2
+stroke_MainButton.Color = Color3.fromRGB(0, 0, 0)
+stroke_MainButton.Parent = MainButton
+ 
+Label.Name = "Label"
+Label.Parent = MainButton
+Label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Label.BackgroundTransparency = 1.000
+Label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Label.BorderSizePixel = 2
+Label.Size = UDim2.new(1, 0, 0.961538434, 0)
+Label.Font = Enum.Font.IndieFlower
+Label.Text = "GRAVITY: NORMAL"
+Label.TextColor3 = Color3.fromRGB(255, 218, 11)
+Label.TextScaled = true
+Label.TextSize = 14.000
+Label.TextWrapped = true
+ 
+local stroke_Label = Instance.new("UIStroke")
+stroke_Label.Thickness = 2
+stroke_Label.Color = Color3.fromRGB(0, 0, 0)
+stroke_Label.Parent = Label
+ 
+UICorner.CornerRadius = UDim.new(0, 17)
+UICorner.Parent = MainButton
+ 
+UICorner1.CornerRadius = UDim.new(0, 17)
+UICorner1.Parent = Main
+ 
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Parent = Main
+TitleLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TitleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.BackgroundTransparency = 1.000
+TitleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TitleLabel.BorderSizePixel = 2
+TitleLabel.Position = UDim2.new(0.5, 0, 0.148809522, 0)
+TitleLabel.Size = UDim2.new(0.852232397, 0, 0.268817216, 0)
+TitleLabel.Font = Enum.Font.IndieFlower
+TitleLabel.Text = "Doge's Zero Gravity"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 206, 11)
+TitleLabel.TextScaled = true
+TitleLabel.TextSize = 14.000
+TitleLabel.TextWrapped = true
+ 
+local stroke_TitleLabel = Instance.new("UIStroke")
+stroke_TitleLabel.Thickness = 2
+stroke_TitleLabel.Color = Color3.fromRGB(0, 0, 0)
+stroke_TitleLabel.Parent = TitleLabel
+ 
+Opener.Name = "Opener"
+Opener.Parent = LolFlingGui
+Opener.AnchorPoint = Vector2.new(0.5, 0.5)
+Opener.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Opener.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Opener.BorderSizePixel = 0
+Opener.Position = UDim2.new(0.774285734, 0, 0.389285713, 0)
+Opener.Size = UDim2.new(0.0761904791, 0, 0.142857149, 0)
+Opener.Image = "rbxassetid://631727248"
+ 
+UICorner_2.CornerRadius = UDim.new(0, 45)
+UICorner_2.Parent = Opener
+ 
+-- Scripts:
+ 
+local players = game:GetService("Players")
+local player = players.LocalPlayer
+local humanoid = player.Character:WaitForChild("Humanoid")
+ 
+local gravityNormal = 196.2
+local gravityZero = 0
+ 
+local gravityEnabled = false
+ 
+local animateScript = humanoid:FindFirstChild("Animate")
+local animator = humanoid:FindFirstChildOfClass("Animator")
+ 
+-- Opener toggle:
+Opener.MouseButton1Click:Connect(function()
+ Main.Visible = not Main.Visible
+end)
+ 
+-- Stop sit animation function:
+local function stopSitAnimation()
+ if animator then
+  for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
+   if string.find(track.Name:lower(), "sit") then
+    track:Stop(0)
+   end
+  end
+ end
+end
+ 
+-- Gravity toggle:
+MainButton.MouseButton1Click:Connect(function()
+ gravityEnabled = not gravityEnabled
+ 
+ if gravityEnabled then
+  workspace.Gravity = gravityZero
+ 
+  if animateScript then
+   animateScript.Disabled = true
+  end
+ 
+  humanoid.Sit = true
+  wait(0.1)
+  stopSitAnimation()
+ 
+  humanoid:ChangeState(Enum.HumanoidStateType.Physics)
+  humanoid.AutoRotate = false
+  humanoid.HipHeight = 0
+ 
+  MainButton.ImageColor3 = Color3.fromRGB(255, 0, 0)
+  Label.Text = "GRAVITY: ZERO"
+ 
+ else
+  workspace.Gravity = gravityNormal
+ 
+  if animateScript then
+   animateScript.Disabled = false
+  end
+ 
+  humanoid.Sit = false
+  humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
+  humanoid.AutoRotate = true
+  humanoid.HipHeight = 2
+ 
+  MainButton.ImageColor3 = Color3.fromRGB(34, 255, 0)
+  Label.Text = "GRAVITY: NORMAL"
+ end
+end)
+ 
+-- Draggable Function:
+local function makeDraggable(guiObject)
+ local dragging = false
+ local dragInput, dragStart, startPos
+ 
+ guiObject.InputBegan:Connect(function(input)
+  if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+   dragging = true
+   dragStart = input.Position
+   startPos = guiObject.Position
+ 
+   input.Changed:Connect(function()
+    if input.UserInputState == Enum.UserInputState.End then
+     dragging = false
+    end
+   end)
+  end
+ end)
+ 
+ guiObject.InputChanged:Connect(function(input)
+  if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+   dragInput = input
+  end
+ end)
+ 
+ game:GetService("UserInputService").InputChanged:Connect(function(input)
+  if input == dragInput and dragging then
+   local delta = input.Position - dragStart
+   guiObject.Position = UDim2.new(
+    startPos.X.Scale,
+    startPos.X.Offset + delta.X,
+    startPos.Y.Scale,
+    startPos.Y.Offset + delta.Y
+   )
+  end
+ end)
+end
+ 
+-- Make Opener and Main draggable:
+makeDraggable(Main)
+makeDraggable(Opener)
