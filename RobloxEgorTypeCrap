@@ -1,0 +1,241 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local SpeedsterHaha = Instance.new("ScreenGui")
+local Main = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local TitleLabel = Instance.new("TextLabel")
+local Button = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Creds = Instance.new("TextLabel")
+local OpenButton = Instance.new("ImageButton")
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+
+SpeedsterHaha.Name = "SpeedsterHaha"
+SpeedsterHaha.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+SpeedsterHaha.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Main.Name = "Main"
+Main.Parent = SpeedsterHaha
+Main.AnchorPoint = Vector2.new(0.5, 0.5)
+Main.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Main.BackgroundTransparency = 0.500
+Main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Main.BorderSizePixel = 0
+Main.Position = UDim2.new(0.329837948, 0, 0.60535717, 0)
+Main.Size = UDim2.new(0.359389901, 0, 0.396428585, 0)
+
+UICorner.Parent = Main
+
+TitleLabel.Name = "TitleLabel"
+TitleLabel.Parent = Main
+TitleLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+TitleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.BackgroundTransparency = 1.000
+TitleLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TitleLabel.BorderSizePixel = 0
+TitleLabel.Position = UDim2.new(0.498673737, 0, 0.130630627, 0)
+TitleLabel.Size = UDim2.new(1, 0, 0.261261255, 0)
+TitleLabel.Font = Enum.Font.Code
+TitleLabel.Text = "Roblox_egor script"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TitleLabel.TextScaled = true
+TitleLabel.TextSize = 14.000
+TitleLabel.TextWrapped = true
+
+Button.Name = "Button"
+Button.Parent = Main
+Button.AnchorPoint = Vector2.new(0.5, 0.5)
+Button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Button.BorderSizePixel = 0
+Button.Position = UDim2.new(0.498673737, 0, 0.545045018, 0)
+Button.Size = UDim2.new(0.530503988, 0, 0.225225225, 0)
+Button.Font = Enum.Font.Code
+Button.Text = "Off"
+Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+Button.TextScaled = true
+Button.TextSize = 14.000
+Button.TextWrapped = true
+
+UICorner_2.Parent = Button
+
+Creds.Name = "Creds"
+Creds.Parent = Main
+Creds.AnchorPoint = Vector2.new(0.5, 0.5)
+Creds.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Creds.BackgroundTransparency = 1.000
+Creds.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Creds.BorderSizePixel = 0
+Creds.Position = UDim2.new(0.498673737, 0, 0.869369388, 0)
+Creds.Size = UDim2.new(1, 0, 0.261261255, 0)
+Creds.Font = Enum.Font.Code
+Creds.Text = "Made by Zenith Lowkey Slaps on Youtube!!!"
+Creds.TextColor3 = Color3.fromRGB(255, 255, 255)
+Creds.TextScaled = true
+Creds.TextSize = 14.000
+Creds.TextWrapped = true
+
+OpenButton.Name = "OpenButton"
+OpenButton.Parent = SpeedsterHaha
+OpenButton.AnchorPoint = Vector2.new(0.5, 0.5)
+OpenButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OpenButton.BorderSizePixel = 0
+OpenButton.Position = UDim2.new(0.718779802, 0, 0.344642848, 0)
+OpenButton.Size = UDim2.new(0, 70, 0, 70)
+OpenButton.Image = "rbxassetid://134582877862503"
+
+UICorner_3.CornerRadius = UDim.new(0, 70)
+UICorner_3.Parent = OpenButton
+
+local button = game.Players.LocalPlayer.PlayerGui:WaitForChild("SpeedsterHaha"):WaitForChild("Main"):WaitForChild("Button")
+local player = game.Players.LocalPlayer
+
+local normalGravity = 196.2
+local normalWalkSpeed = 16
+local activeWalkSpeed = 14
+local activeGravity = 2
+local animSpeed = 83
+
+local isActive = false
+local runTrack
+
+local runAnim = Instance.new("Animation")
+runAnim.AnimationId = "rbxassetid://913376220" -- Default R15 run animation
+
+local function getCharacter()
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hum = char:WaitForChild("Humanoid")
+	return char, hum
+end
+
+-- Play run animation manually
+local function setupManualRun(humanoid)
+	humanoid.Running:Connect(function(speed)
+		if isActive then
+			if speed > 0 then
+				if not runTrack or not runTrack.IsPlaying then
+					runTrack = humanoid:LoadAnimation(runAnim)
+					runTrack:Play()
+					runTrack:AdjustSpeed(animSpeed)
+				end
+			else
+				if runTrack then
+					runTrack:Stop()
+					runTrack = nil
+				end
+			end
+		end
+	end)
+end
+
+button.MouseButton1Click:Connect(function()
+	local char, humanoid = getCharacter()
+	local animateScript = char:FindFirstChild("Animate")
+
+	isActive = not isActive
+
+	if isActive then
+		button.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+		button.Text = "On"
+
+		workspace.Gravity = activeGravity
+		humanoid.WalkSpeed = activeWalkSpeed
+
+		-- Disable default run animation
+		if animateScript and animateScript:FindFirstChild("run") then
+			animateScript.run.RunAnim.AnimationId = "rbxassetid://0"
+		end
+
+		setupManualRun(humanoid)
+	else
+		button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		button.Text = "Off"
+
+		workspace.Gravity = normalGravity
+		humanoid.WalkSpeed = normalWalkSpeed
+
+		if runTrack then
+			runTrack:Stop()
+			runTrack = nil
+		end
+
+		-- Restore default run animation
+		if animateScript and animateScript:FindFirstChild("run") then
+			animateScript.run.RunAnim.AnimationId = "rbxassetid://913376220"
+		end
+	end
+end)
+
+--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+--Put this inside of your Frame and configure the speed if you would like.
+--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
+
+local UIS = game:GetService('UserInputService')
+local TweenService = game:GetService('TweenService')
+
+-- Replace with your actual GUI names
+local playerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local gui = playerGui:WaitForChild("SpeedsterHaha")
+local mainFrame = gui:WaitForChild("Main")
+local imageButton = gui:WaitForChild("OpenButton") -- Your image button
+
+local dragToggle = nil
+local dragSpeed = 0.25
+local dragStart = nil
+local startPos = nil
+local draggingObject = nil
+
+local function updateInput(input)
+	if not draggingObject then return end
+	local delta = input.Position - dragStart
+	local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	TweenService:Create(draggingObject, TweenInfo.new(dragSpeed), {Position = position}):Play()
+end
+
+local function setupDragging(guiObject)
+	guiObject.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragToggle = true
+			dragStart = input.Position
+			startPos = guiObject.Position
+			draggingObject = guiObject
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+					draggingObject = nil
+				end
+			end)
+		end
+	end)
+end
+
+UIS.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		if dragToggle and draggingObject then
+			updateInput(input)
+		end
+	end
+end)
+
+-- Set up both draggable objects
+setupDragging(mainFrame)
+setupDragging(imageButton)
+
+local button = game.Players.LocalPlayer.PlayerGui:WaitForChild("SpeedsterHaha"):WaitForChild("OpenButton")
+local frame = button.Parent:WaitForChild("Main")
+
+-- Optional: start with the frame visible or hidden
+frame.Visible = true
+
+button.MouseButton1Click:Connect(function()
+	frame.Visible = not frame.Visible
+end)
+
